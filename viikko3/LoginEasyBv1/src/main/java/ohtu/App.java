@@ -51,13 +51,13 @@ public class App {
         }
     }
 
+
     public static void main(String[] args) {
         UserDao dao = new InMemoryUserDao();
         IO io = new ConsoleIO();
         AuthenticationService auth = new AuthenticationService(dao);
         new App(io, auth).run();
     }
-    
     // testejä debugatessa saattaa olla hyödyllistä testata ohjelman ajamista
     // samoin kuin testi tekee, eli injektoimalla käyttäjän syötteen StubIO:n avulla
     //
