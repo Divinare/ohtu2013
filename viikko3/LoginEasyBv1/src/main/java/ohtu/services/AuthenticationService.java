@@ -40,30 +40,7 @@ public class AuthenticationService {
 
     private boolean invalid(String username, String password) {
         // validity check of username and password
-        if (password.length() < 8) {
-            return true;
-        }
-        if (username.length() < 3) {
-            return true;
-        }
-        if (username.length() != laskeKirjaimet(username)) {
-            return true;
-        }
-        if (password.length() == laskeKirjaimet(password)) {
-            return true;
-        }
+
         return false;
-    }
-
-    private int laskeKirjaimet(String s) {
-        int tulos = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c >= 'a' && c <= 'z') {
-                tulos++;
-            }
-        }
-        return tulos;
-
     }
 }

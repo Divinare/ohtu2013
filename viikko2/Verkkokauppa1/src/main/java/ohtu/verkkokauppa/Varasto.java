@@ -2,18 +2,27 @@ package ohtu.verkkokauppa;
 
 import java.util.*;
 
-public class Varasto implements VarastoRajapinta {
+public class Varasto {
 
-    private KirjanpitoRajapinta kirjanpito;
-    private HashMap<Tuote, Integer> saldot;
+    private static Varasto instanssi;
 
-    public Varasto(KirjanpitoRajapinta k) {
-        saldot = new HashMap<Tuote, Integer>();
-        alustaTuotteet();
-        kirjanpito = k;
+    public static Varasto getInstance() {
+        if (instanssi == null) {
+            instanssi = new Varasto();
+        }
+
+        return instanssi;
     }
 
-    @Override
+    private Kirjanpito kirjanpito;
+    private HashMap<Tuote, Integer> saldot;
+
+    private Varasto() {
+        kirjanpito = Kirjanpito.getInstance();
+        saldot = new HashMap<Tuote, Integer>();
+        alustaTuotteet();
+    }
+
     public Tuote haeTuote(int id){
         for (Tuote t : saldot.keySet()) {
             if ( t.getId()==id) return t;
@@ -22,18 +31,15 @@ public class Varasto implements VarastoRajapinta {
         return null;
     }
 
-    @Override
     public int saldo(int id){
         return saldot.get(haeTuote(id));
     }
 
-    @Override
     public void otaVarastosta(Tuote t){
         saldot.put(t,  saldo(t.getId())-1 );
         kirjanpito.lisaaTapahtuma("otettiin varastosta "+t);
     }
 
-    @Override
     public void palautaVarastoon(Tuote t){
         saldot.put(t,  saldo(t.getId())+1 );
         kirjanpito.lisaaTapahtuma("palautettiin varastoon "+t);

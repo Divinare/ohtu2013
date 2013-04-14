@@ -5,7 +5,12 @@
 package ohtu.verkkokauppa;
 
 import java.util.ArrayList;
-public interface KirjanpitoRajapinta {
+
+/**
+ *
+ * @author mluukkai
+ */
+public interface Kirjanpito {
 
     ArrayList<String> getTapahtumat();
 

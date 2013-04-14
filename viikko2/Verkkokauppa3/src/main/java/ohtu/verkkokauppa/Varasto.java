@@ -4,8 +4,11 @@
  */
 package ohtu.verkkokauppa;
 
-
-public interface VarastoRajapinta {
+/**
+ *
+ * @author mluukkai
+ */
+public interface Varasto {
 
     Tuote haeTuote(int id);
 

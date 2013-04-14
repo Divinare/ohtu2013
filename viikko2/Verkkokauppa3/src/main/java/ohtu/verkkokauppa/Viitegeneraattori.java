@@ -4,8 +4,11 @@
  */
 package ohtu.verkkokauppa;
 
-
-public interface ViitegeneraattoriRajapinta {
+/**
+ *
+ * @author mluukkai
+ */
+public interface Viitegeneraattori {
 
     int uusi();
     
